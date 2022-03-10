@@ -32,7 +32,8 @@ void loop() {
   doc["joyValY"] = joyValY;
   doc["joyValSW"] =  joyValSW;
   
-  serializeJsonPretty(doc, Serial);
+  serializeJson(doc, Serial);
+  Serial.println();
   
   delay(500);
 }
