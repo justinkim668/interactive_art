@@ -2,6 +2,9 @@
 // joystick VRX is connected to GPIO 15
 // joystick VRY is connected to GPIO 13
 // joystick SW is connected to GPIO 12
+#include <ArduinoJson.h>;
+DynamicJsonDocument doc(1024);
+
 const int potPin1 = 2;
 const int joyPin1 = 15;
 const int joyPin2 = 13;
@@ -18,16 +21,18 @@ void setup() {
 }
 
 void loop() {
-  // Reading potentiometer value
+  // Reading potentiometer value + joystick values
   potValue = analogRead(potPin1);
   joyValX = analogRead(joyPin1);
   joyValY = analogRead(joyPin2);
   joyValSW = analogRead(joyPin3);
+
+  doc["potValue"] = potValue;
+  doc["joyValX"] = joyValX;
+  doc["joyValY"] = joyValY;
+  doc["joyValSW"] =  joyValSW;
   
-  Serial.println(potValue);
-  Serial.println(joyValX);
-  Serial.println(joyValY);
-  Serial.println(joyValSW);
+  serializeJsonPretty(doc, Serial);
   
   delay(500);
 }
