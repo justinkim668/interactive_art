@@ -18,11 +18,11 @@ while(True):
     else:
         if (json_data['joyValX'] == 0):
             mod = 0
-        elif(json_data['joyValX'] == 4056):
+        elif(json_data['joyValX'] == 4095):
             mod = 3
         elif(json_data['joyValY'] == 0):
             mod = 1
-        elif(json_data['joyValY'] == 4056):
+        elif(json_data['joyValY'] == 4095):
             mod = 2
 
         a = LFO(freq = freq, type = mod).out()
